@@ -228,6 +228,11 @@ class CarInterface(CarInterfaceBase):
       ret.wheelbase = 2.65
       ret.steerRatio = 13.75
       ret.tireStiffnessFactor = 0.5
+    elif candidate == CAR.KIA_CEED_SW_PHEV_2022_NON_SCC:
+      ret.mass = 1650.
+      ret.wheelbase = 2.65
+      ret.steerRatio = 13.75
+      ret.tireStiffnessFactor = 0.5
     elif candidate in (CAR.KIA_K5_2021, CAR.KIA_K5_HEV_2020):
       ret.mass = 3381. * CV.LB_TO_KG
       ret.wheelbase = 2.85
