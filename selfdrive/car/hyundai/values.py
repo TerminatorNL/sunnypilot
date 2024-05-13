@@ -598,6 +598,7 @@ NON_SCC_CAR = {CAR.KIA_CEED_SW_PHEV_2022_NON_SCC, CAR.KIA_FORTE_2021_NON_SCC, CA
                CAR.KIA_SELTOS_2023_NON_SCC, CAR.KONA_NON_SCC, CAR.BAYON_1ST_GEN_NON_SCC}
 NON_SCC_NO_FCA_CAR = {CAR.KIA_FORTE_2019_NON_SCC, }
 NON_SCC_RADAR_FCA_CAR = {CAR.GENESIS_G70_2021_NON_SCC, }
+NON_SCC_CAR_ALTERNATIVE_CRUISE = {CAR.KIA_CEED_SW_PHEV_2022_NON_SCC} # Cruise control signals are in EMS11
 
 # If 0x500 is present on bus 1 it probably has a Mando radar outputting radar points.
 # If no points are outputted by default it might be possible to turn it on using  selfdrive/debug/hyundai_enable_radar_points.py

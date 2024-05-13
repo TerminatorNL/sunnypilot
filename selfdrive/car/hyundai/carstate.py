@@ -8,7 +8,7 @@ from opendbc.can.parser import CANParser
 from opendbc.can.can_define import CANDefine
 from openpilot.selfdrive.car.hyundai.hyundaicanfd import CanBus
 from openpilot.selfdrive.car.hyundai.values import HyundaiFlags, HyundaiFlagsSP, CAR, DBC, CAN_GEARS, CAMERA_SCC_CAR, \
-                                                   CANFD_CAR, NON_SCC_CAR, NON_SCC_NO_FCA_CAR, NON_SCC_RADAR_FCA_CAR, \
+                                                   CANFD_CAR, NON_SCC_CAR, NON_SCC_CAR_ALTERNATIVE_CRUISE, NON_SCC_NO_FCA_CAR, NON_SCC_RADAR_FCA_CAR, \
                                                    Buttons, CarControllerParams
 from openpilot.selfdrive.car.interfaces import CarStateBase
 
@@ -116,12 +116,19 @@ class CarState(CarStateBase):
       ret.cruiseState.enabled = cp.vl["TCS13"]["ACC_REQ"] == 1
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
-    elif self.CP.carFingerprint in NON_SCC_CAR:
+    elif self.CP.carFingerprint in NON_SCC_CAR and self.CP.carFingerprint not in NON_SCC_CAR_ALTERNATIVE_CRUISE:
       ret.cruiseState.available = cp.vl['EMS16']['CRUISE_LAMP_M'] != 0
       ret.cruiseState.enabled = cp.vl["LVR12"]['CF_Lvr_CruiseSet'] != 0
       ret.cruiseState.speed = cp.vl["LVR12"]["CF_Lvr_CruiseSet"] * speed_conv
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
+    elif self.CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
+      # TODO replace with true values
+      ret.cruiseState.available = False
+      ret.cruiseState.enabled = False
+      ret.cruiseState.speed = 0
+      ret.cruiseState.standstill = False
+      ret.cruiseState.nonAdaptive = True
     else:
       ret.cruiseState.available = cp_cruise.vl["SCC11"]["MainMode_ACC"] == 1
       ret.cruiseState.enabled = cp_cruise.vl["SCC12"]["ACCMode"] != 0
