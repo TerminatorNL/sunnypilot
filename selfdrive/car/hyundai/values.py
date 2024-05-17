@@ -558,7 +558,7 @@ CHECKSUM = {
 
 CAN_GEARS = {
   # which message has the gear. hybrid and EV use ELECT_GEAR
-  "use_cluster_gears": {CAR.ELANTRA, CAR.ELANTRA_GT_I30, CAR.KONA, CAR.KIA_CEED_SW_PHEV_2022_NON_SCC},
+  "use_cluster_gears": {CAR.ELANTRA, CAR.ELANTRA_GT_I30, CAR.KONA},
   "use_tcu_gears": {CAR.KIA_OPTIMA_G4, CAR.KIA_OPTIMA_G4_FL, CAR.SONATA_LF, CAR.VELOSTER, CAR.TUCSON},
 }
 
