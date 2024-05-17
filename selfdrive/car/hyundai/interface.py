@@ -359,7 +359,7 @@ class CarInterface(CarInterfaceBase):
 
       if ret.spFlags & HyundaiFlagsSP.SP_ENHANCED_SCC:
         ret.safetyConfigs[0].safetyParam |= Panda.FLAG_HYUNDAI_ESCC
-      if 0x391 in fingerprint[0]:
+      if 0x391 in fingerprint[0] or candidate == CAR.KIA_CEED_SW_PHEV_2022_NON_SCC:
         ret.spFlags |= HyundaiFlagsSP.SP_CAN_LFA_BTN.value
         ret.safetyConfigs[0].safetyParam |= Panda.FLAG_HYUNDAI_LFA_BTN
       if candidate in NON_SCC_CAR:
