@@ -1529,7 +1529,7 @@ BO_ 1427 TPMS11: 6 BCM
  SG_ PRESSURE_RL : 32|8@1+ (1,0) [0|255] "" CLU
  SG_ PRESSURE_RR : 40|8@1+ (1,0) [0|255] "" CLU
 
-BO_ 1429 CEED_2022_TEST_1: 8 XXX
+BO_ 1429 UNKN_CD_1: 8 XXX
  SG_ UnknownSignal : 23|8@0+ (1,0) [0|255] "" XXX
  SG_ CruiseState : 51|2@0+ (1,0) [0|1] "" XXX
 
