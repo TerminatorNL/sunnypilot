@@ -116,19 +116,19 @@ class CarState(CarStateBase):
       ret.cruiseState.enabled = cp.vl["TCS13"]["ACC_REQ"] == 1
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
-    elif self.CP.carFingerprint in NON_SCC_CAR and self.CP.carFingerprint not in NON_SCC_CAR_ALTERNATIVE_CRUISE:
+    elif self.CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
+      # TODO replace with true values
+      ret.cruiseState.available = cp.vl["CEED_2022_TEST_1"]["CruiseState"] != "Off"
+      ret.cruiseState.enabled = cp.vl["CEED_2022_TEST_1"]["CruiseState"] == "Active"
+      ret.cruiseState.speed = cp.vl["ELECT_GEAR"]["Cruise_setpoint"] * speed_conv
+      ret.cruiseState.standstill = False
+      ret.cruiseState.nonAdaptive = True
+    elif self.CP.carFingerprint in NON_SCC_CAR:
       ret.cruiseState.available = cp.vl['EMS16']['CRUISE_LAMP_M'] != 0
       ret.cruiseState.enabled = cp.vl["LVR12"]['CF_Lvr_CruiseSet'] != 0
       ret.cruiseState.speed = cp.vl["LVR12"]["CF_Lvr_CruiseSet"] * speed_conv
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
-    elif self.CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
-      # TODO replace with true values
-      ret.cruiseState.available = False
-      ret.cruiseState.enabled = False
-      ret.cruiseState.speed = 0
-      ret.cruiseState.standstill = False
-      ret.cruiseState.nonAdaptive = True
     else:
       ret.cruiseState.available = cp_cruise.vl["SCC11"]["MainMode_ACC"] == 1
       ret.cruiseState.enabled = cp_cruise.vl["SCC12"]["ACCMode"] != 0

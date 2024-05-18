@@ -598,7 +598,7 @@ NON_SCC_CAR = {CAR.KIA_CEED_SW_PHEV_2022_NON_SCC, CAR.KIA_FORTE_2021_NON_SCC, CA
                CAR.KIA_SELTOS_2023_NON_SCC, CAR.KONA_NON_SCC, CAR.BAYON_1ST_GEN_NON_SCC}
 NON_SCC_NO_FCA_CAR = {CAR.KIA_FORTE_2019_NON_SCC, }
 NON_SCC_RADAR_FCA_CAR = {CAR.GENESIS_G70_2021_NON_SCC, }
-NON_SCC_CAR_ALTERNATIVE_CRUISE = {CAR.KIA_CEED_SW_PHEV_2022_NON_SCC} # Cruise control signals are in EMS11
+NON_SCC_CAR_ALTERNATIVE_CRUISE = {CAR.KIA_CEED_SW_PHEV_2022_NON_SCC}
 
 # If 0x500 is present on bus 1 it probably has a Mando radar outputting radar points.
 # If no points are outputted by default it might be possible to turn it on using  selfdrive/debug/hyundai_enable_radar_points.py
@@ -655,7 +655,7 @@ DBC = {
   CAR.PALISADE: dbc_dict('hyundai_kia_generic', 'hyundai_kia_mando_front_radar_generated'),
   CAR.VELOSTER: dbc_dict('hyundai_kia_generic', None),
   CAR.KIA_CEED: dbc_dict('hyundai_kia_generic', None),
-  CAR.KIA_CEED_SW_PHEV_2022_NON_SCC: dbc_dict('hyundai_kia_generic', None),
+  CAR.KIA_CEED_SW_PHEV_2022_NON_SCC: dbc_dict('kia_ceed_sw_phev_2022_no-scc', None),
   CAR.KIA_EV6: dbc_dict('hyundai_canfd', None),
   CAR.SONATA_HYBRID: dbc_dict('hyundai_kia_generic', 'hyundai_kia_mando_front_radar_generated'),
   CAR.TUCSON_4TH_GEN: dbc_dict('hyundai_canfd', None),
