@@ -118,11 +118,11 @@ class CarState(CarStateBase):
       ret.cruiseState.nonAdaptive = False
     elif self.CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
       # TODO replace with true values
-      ret.cruiseState.available = cp.vl["UNKN_CD_1"]["CruiseState"] != "Off"
-      ret.cruiseState.enabled = cp.vl["UNKN_CD_1"]["CruiseState"] == "Active"
-      ret.cruiseState.speed = cp.vl["ELECT_GEAR"]["Cruise_setpoint"] * speed_conv
+      ret.cruiseState.available = False
+      ret.cruiseState.enabled = False
+      ret.cruiseState.speed = False
       ret.cruiseState.standstill = False
-      ret.cruiseState.nonAdaptive = False # TEST: Should be replaced with proper function.
+      ret.cruiseState.nonAdaptive = False
     elif self.CP.carFingerprint in NON_SCC_CAR:
       ret.cruiseState.available = cp.vl['EMS16']['CRUISE_LAMP_M'] != 0
       ret.cruiseState.enabled = cp.vl["LVR12"]['CF_Lvr_CruiseSet'] != 0
