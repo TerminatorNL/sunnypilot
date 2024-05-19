@@ -120,7 +120,7 @@ class CarState(CarStateBase):
       # TODO replace with true values
       ret.cruiseState.available = False
       ret.cruiseState.enabled = False
-      ret.cruiseState.speed = False
+      ret.cruiseState.speed = 0.
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
     elif self.CP.carFingerprint in NON_SCC_CAR:
