@@ -377,7 +377,7 @@ class CarState(CarStateBase):
       messages.append(("LVR12", 100))
 
     if CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
-      messages.append(("UNKN_CD_1", 50))
+      messages.append(("UNKN_CD_1", 100))
 
     if CP.spFlags & HyundaiFlagsSP.SP_CAN_LFA_BTN:
       messages.append(("BCM_PO_11", 50))
