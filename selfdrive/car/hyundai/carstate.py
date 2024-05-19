@@ -118,9 +118,9 @@ class CarState(CarStateBase):
       ret.cruiseState.nonAdaptive = False
     elif self.CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
       # TODO replace with true values
-      ret.cruiseState.available = False
-      ret.cruiseState.enabled = False
-      ret.cruiseState.speed = 0.
+      ret.cruiseState.available = cp.vl["UNKN_CD_1"]["CruiseState"] != "Off"
+      ret.cruiseState.enabled = cp.vl["ELECT_GEAR"]["Cruise_setpoint"] != 0
+      ret.cruiseState.speed = cp.vl["ELECT_GEAR"]["Cruise_setpoint"] * speed_conv
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
     elif self.CP.carFingerprint in NON_SCC_CAR:
@@ -377,7 +377,7 @@ class CarState(CarStateBase):
       messages.append(("LVR12", 100))
 
     if CP.carFingerprint in NON_SCC_CAR_ALTERNATIVE_CRUISE:
-      messages.append(("UNKN_CD_1", 5))
+      messages.append(("UNKN_CD_1", 50))
 
     if CP.spFlags & HyundaiFlagsSP.SP_CAN_LFA_BTN:
       messages.append(("BCM_PO_11", 50))
