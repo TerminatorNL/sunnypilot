@@ -105,11 +105,12 @@ class HyundaiFlagsSP(IntFlag):
   SP_NON_SCC = 2 ** 3
   SP_NON_SCC_FCA = 2 ** 4
   SP_NON_SCC_RADAR_FCA = 2 ** 5
+  SP_NON_SCC_ALT_CRUISE = 2 ** 6
 
-  SP_CAMERA_SCC_LEAD = 2 ** 6
-  SP_LKAS12 = 2 ** 7
-  SP_RADAR_TRACKS = 2 ** 8
-  SP_UPSTREAM_TACO = 2 ** 9
+  SP_CAMERA_SCC_LEAD = 2 ** 7
+  SP_LKAS12 = 2 ** 8
+  SP_RADAR_TRACKS = 2 ** 9
+  SP_UPSTREAM_TACO = 2 ** 10
 
 
 class Footnote(Enum):
@@ -495,7 +496,7 @@ class CAR(Platforms):
     [HyundaiCarDocs("Kia Ceed SW PHEV 2022", car_parts=CarParts.common([CarHarness.hyundai_i]))],
     CarSpecs(mass=1650, wheelbase=2.65, steerRatio=13.75, tireStiffnessFactor=0.5),
     flags=HyundaiFlags.HYBRID | HyundaiFlags.USE_FCA,
-    spFlags=HyundaiFlagsSP.SP_NON_SCC | HyundaiFlagsSP.SP_CAN_LFA_BTN
+    spFlags=HyundaiFlagsSP.SP_NON_SCC | HyundaiFlagsSP.SP_CAN_LFA_BTN | HyundaiFlagsSP.SP_NON_SCC_ALT_CRUISE
   )
   KIA_EV6 = HyundaiCanFDPlatformConfig(
     [
@@ -809,6 +810,7 @@ LEGACY_SAFETY_MODE_CAR = CAR.with_flags(HyundaiFlags.LEGACY)
 UNSUPPORTED_LONGITUDINAL_CAR = CAR.with_flags(HyundaiFlags.LEGACY) | CAR.with_flags(HyundaiFlags.UNSUPPORTED_LONGITUDINAL)
 
 NON_SCC_CAR = CAR.with_sp_flags(HyundaiFlagsSP.SP_NON_SCC)
+NON_SCC_ALT_CRUISE = CAR.with_sp_flags(HyundaiFlagsSP.SP_NON_SCC_ALT_CRUISE)
 NON_SCC_FCA_CAR = CAR.with_sp_flags(HyundaiFlagsSP.SP_NON_SCC_FCA)
 NON_SCC_RADAR_FCA_CAR = CAR.with_sp_flags(HyundaiFlagsSP.SP_NON_SCC_RADAR_FCA)
 
