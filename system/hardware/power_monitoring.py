@@ -1,6 +1,7 @@
 import time
 import threading
 
+import openpilot.system.hardware.hardwared
 from openpilot.common.numpy_fast import interp
 from openpilot.common.params import Params
 from openpilot.system.hardware import HARDWARE
@@ -107,7 +108,7 @@ class PowerMonitoring:
     return int(self.car_battery_capacity_uWh)
 
   # See if we need to shutdown
-  def should_shutdown(self, ignition: bool, in_car: bool, offroad_timestamp: float | None, started_seen: bool):
+  def should_shutdown(self, ignition: bool, in_car: bool, offroad_timestamp: float | None, started_seen: bool, network_type: int | None):
     if offroad_timestamp is None:
       return False
 
@@ -115,9 +116,14 @@ class PowerMonitoring:
                                 [0, 1,  2,  3,   4,   5,   6,    7,    8,     9,    10,    11,     12],
                                 [0, 5, 30, 60, 180, 300, 600, 1800, 3600, 10800, 18000, 36000, 108000])
 
-    # TODO/FIXME
-    # Depends on MaxTimeOffroadException parameter.
-    can_exceed_offroad_time = True
+    max_time_offroad_exception_s = int(self.params.get("MaxTimeOffroadException", encoding="utf8"))
+    can_exceed_offroad_time = False
+    if max_time_offroad_exception_s == 2 or max_time_offroad_exception_s == 3:
+      # Keep display alive since WiFi is connected.
+      can_exceed_offroad_time |= network_type == openpilot.system.hardware.hardwared.NetworkType.wifi
+    if max_time_offroad_exception_s == 1:
+      # TODO: Find out if the car is currently charging or not.
+      can_exceed_offroad_time |= False
 
     now = time.monotonic()
     should_shutdown = False
