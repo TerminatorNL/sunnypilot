@@ -1,7 +1,6 @@
 import time
 import threading
 
-import openpilot.system.hardware.hardwared
 from openpilot.common.numpy_fast import interp
 from openpilot.common.params import Params
 from openpilot.system.hardware import HARDWARE
@@ -120,7 +119,11 @@ class PowerMonitoring:
     can_exceed_offroad_time = False
     if max_time_offroad_exception_s == 2 or max_time_offroad_exception_s == 3:
       # Keep display alive since WiFi is connected.
-      can_exceed_offroad_time |= network_type == openpilot.system.hardware.hardwared.NetworkType.wifi
+
+      # As per cereal/log.capnp NetworkType
+      NETWORK_CONNECTION_NONE: int = 0
+      NETWORK_CONNECTION_WIFI: int = 1
+      can_exceed_offroad_time |= network_type == NETWORK_CONNECTION_WIFI
     if max_time_offroad_exception_s == 1:
       # TODO: Find out if the car is currently charging or not.
       can_exceed_offroad_time |= False
