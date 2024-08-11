@@ -162,7 +162,7 @@ void MaxTimeOffroadException::refresh() {
   } else if (option == "2") {
     setLabel(tr("WiFi connected"));
   } else if (option == "3") {
-    setLabel("Charging or WiFi connected" );
+    setLabel(tr("Charging or WiFi connected"));
   }
 }
 
