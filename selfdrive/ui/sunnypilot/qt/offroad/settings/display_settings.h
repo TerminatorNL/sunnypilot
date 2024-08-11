@@ -67,6 +67,18 @@ private:
   Params params;
 };
 
+class MaxTimeOffroadException : public OptionControlSP {
+  Q_OBJECT
+
+public:
+  MaxTimeOffroadException();
+
+  void refresh();
+
+private:
+  Params params;
+};
+
 class BrightnessControl : public OptionControlSP {
   Q_OBJECT
 

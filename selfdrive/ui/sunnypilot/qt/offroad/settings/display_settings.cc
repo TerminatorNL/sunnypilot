@@ -50,6 +50,10 @@ DisplayPanel::DisplayPanel(QWidget *parent) : ListWidgetSP(parent, false) {
   connect(max_time_offroad, &OptionControlSP::updateLabels, max_time_offroad, &MaxTimeOffroad::refresh);
   addItem(max_time_offroad);
 
+  auto max_time_offroad_exception = new MaxTimeOffroadException();
+  connect(max_time_offroad_exception, &OptionControlSP::updateLabels, max_time_offroad_exception, &MaxTimeOffroadException::refresh);
+  addItem(max_time_offroad_exception);
+
   // General: Onroad Screen Off (Auto Onroad Screen Timer)
   onroad_screen_off = new OnroadScreenOff();
   onroad_screen_off->setUpdateOtherToggles(true);
@@ -135,6 +139,30 @@ void MaxTimeOffroad::refresh() {
     setLabel("10 " + hour);
   } else if (option == "12") {
     setLabel("30 " + hour);
+  }
+}
+
+
+// Max Time Offroad (Shutdown timer)
+MaxTimeOffroadException::MaxTimeOffroadException() : OptionControlSP(
+  "MaxTimeOffroadException",
+  tr("Max Time Offroad Exception"),
+  tr("Bypass offroad timer when..."),
+  "../assets/offroad/icon_blank.png",
+  {0, 3}) {
+  refresh();
+}
+
+void MaxTimeOffroadException::refresh() {
+  QString option = QString::fromStdString(params.get("MaxTimeOffroadException"));
+  if (option == "0") {
+    setLabel(tr("Never"));
+  } else if (option == "1") {
+    setLabel(tr("Charging"));
+  } else if (option == "2") {
+    setLabel(tr("WiFi connected"));
+  } else if (option == "3") {
+    setLabel("Charging or WiFi connected" );
   }
 }
 

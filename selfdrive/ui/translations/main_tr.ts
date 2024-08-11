@@ -856,6 +856,33 @@ Pause Steering: ALC will be paused after the brake pedal is manually pressed.</s
     </message>
 </context>
 <context>
+    <name>MaxTimeOffroadException</name>
+    <message>
+        <source>Max Time Offroad Exception</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bypass offroad timer when...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Charging</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WiFi connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Charging or WiFi connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MonitoringPanel</name>
     <message>
         <source>Enable Hands on Wheel Monitoring</source>

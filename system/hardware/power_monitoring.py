@@ -114,12 +114,18 @@ class PowerMonitoring:
     max_time_offroad_s = interp(int(self.params.get("MaxTimeOffroad", encoding="utf8")),
                                 [0, 1,  2,  3,   4,   5,   6,    7,    8,     9,    10,    11,     12],
                                 [0, 5, 30, 60, 180, 300, 600, 1800, 3600, 10800, 18000, 36000, 108000])
+
+    # TODO/FIXME
+    # Depends on MaxTimeOffroadException parameter.
+    can_exceed_offroad_time = True
+
     now = time.monotonic()
     should_shutdown = False
     offroad_time = (now - offroad_timestamp)
+    has_exceeded_max_offroad_time = (offroad_time > max_time_offroad_s) if max_time_offroad_s != 0 else False
     low_voltage_shutdown = (self.car_voltage_mV < (VBATT_PAUSE_CHARGING * 1e3) and
                             offroad_time > VOLTAGE_SHUTDOWN_MIN_OFFROAD_TIME_S)
-    should_shutdown |= (offroad_time > max_time_offroad_s) if max_time_offroad_s != 0 else False
+    should_shutdown |= has_exceeded_max_offroad_time and not can_exceed_offroad_time
     should_shutdown |= low_voltage_shutdown
     should_shutdown |= (self.car_battery_capacity_uWh <= 0)
     should_shutdown &= not ignition

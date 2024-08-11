@@ -77,6 +77,7 @@ def manager_init() -> None:
     ("MadsIconToggle", "1"),
     ("MapdVersion", f"{VERSION}"),
     ("MaxTimeOffroad", "9"),
+    ("MaxTimeOffroadException", "0"),
     ("NNFF", "0"),
     ("OnroadScreenOff", "-2"),
     ("OnroadScreenOffBrightness", "50"),
